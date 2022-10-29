@@ -1,0 +1,55 @@
+name: CI
+
+on:
+  pull_request:
+    branches: [develop, main]
+  push:
+    branches: [develop, main]
+
+jobs:
+  build-and-deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - name: Cache node_modules
+        uses: actions/cache@v3
+        with:
+          path: ~/.npm
+          key: ${{ runner.os }}-node-${{ hashFiles('**/package-lock.json') }}
+          restore-keys: |
+            ${{ runner.os }}-node-
+      - name: Use NodeJS
+        uses: actions/setup-node@v3
+        with:
+          node-version: 18
+      - run: npm ci
+      - run: npm run format:check
+      - run: npm test -- --coverage
+        env:
+          CI: true
+      - name: Upload Test Coverage
+        uses: actions/upload-artifact@v3
+        with:
+          name: code-coverage
+          path: coverage
+      - name: Build Project
+        if: github.event_name == 'push'
+        run: npm run build
+      - name: Upload Build Folder
+        if: github.event_name == 'push'
+        uses: actions/upload-artifact@v3
+        with:
+          name: build
+          path: build
+      - Create a Release
+        # Create a release only on push to the main branch
+        if: github.event_name == 'push' && github.ref == 'refs/heads/master'
+        run: npx semantic-release
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      - name: Deploy to staging
+        if: github.event_name == 'push'
+        run: npx surge --project ./build --domain easy-money.surge.sh
+        env:
+          SURGE_LOGIN: ${{ secrets.SURGE_LOGIN }}
+          SURGE_TOKEN: ${{ secrets.SURGE_TOKEN }}
