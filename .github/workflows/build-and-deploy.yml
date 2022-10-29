@@ -41,7 +41,7 @@ jobs:
         with:
           name: build
           path: build
-      - Create a Release
+      - name: Create a Release
         # Create a release only on push to the main branch
         if: github.event_name == 'push' && github.ref == 'refs/heads/master'
         run: npx semantic-release
