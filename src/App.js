@@ -15,7 +15,7 @@ function App() {
           target="_blank"
           rel="noopener noreferrer"
         >
-          Learn React Pew
+          Learn React Pew Pew
         </a>
       </header>
     </div>
