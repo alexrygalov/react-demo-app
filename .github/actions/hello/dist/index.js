@@ -9694,9 +9694,8 @@ try {
   core.warning("Warning message");
   core.error("Error message");
 
-  core.setSecret(name);
-
   const name = core.getInput("who-to-greet");
+  core.setSecret(name);
   console.log(`Hello ${name}`);
 
   const time = new Date();
