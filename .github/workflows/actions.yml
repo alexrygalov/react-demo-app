@@ -9,4 +9,4 @@ jobs:
         with:
           who-to-greet: "Test1"
       - run: |
-          echo "Time: ${{ steps.id.outputs.time }}
+          echo "Time: ${{ steps.id.outputs.time }}"
