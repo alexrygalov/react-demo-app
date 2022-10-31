@@ -10,7 +10,7 @@ inputs:
     required: true
   body:
     description: "Issue Body"
-  assigners:
+  assignees:
     description: "Issue Assignees"
 outputs:
   issue: # id or output
