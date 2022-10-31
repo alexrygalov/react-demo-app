@@ -1,0 +1,14 @@
+name: Hello World
+author: Alex Rygalov
+description: Pew Pew
+inputs:
+  who-to-greet:
+    description: "Who to greet"
+    required: true
+    default: Alex Rygalov
+outputs:
+  time:
+    description: "The greeting time"
+runs:
+  using: "node16"
+  main: "dist/index.js"
