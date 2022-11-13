@@ -12,10 +12,10 @@ jobs:
           body: body
           assignees: |
             alexrygalov
-      - uses: ./.github/actions/hello
+      - uses: ./.github/actions/hello-docker
         id: hello
         with:
-          who-to-greet: "Test1"
+          who-to-greet: "Pew Pew"
       - run: |
           echo "Time: ${{ steps.issue.outputs.issue }}"
       - run: |
