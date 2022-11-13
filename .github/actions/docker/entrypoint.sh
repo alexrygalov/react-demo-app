@@ -20,6 +20,6 @@ echo 'some stuff1'
 echo 'some stuff2'
 echo 'some stuff3'
 echo 'some stuff4'
-echo '::endgroup'
+echo '::endgroup::'
 
 echo 'HELLO=hello' >> "$GITHUB_ENV"
