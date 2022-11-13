@@ -12,6 +12,15 @@ jobs:
           body: body
           assignees: |
             alexrygalov
+      - uses: ./.github/actions/hello
+      - uses: ./.github/actions/issue
+        id: issue
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+          title: Title
+          body: body
+          assignees: |
+            alexrygalov
       - uses: ./.github/actions/hello-docker
         id: hello
         with:
