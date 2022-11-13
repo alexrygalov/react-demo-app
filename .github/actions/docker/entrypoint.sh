@@ -1,6 +1,6 @@
 #!/usr/bin/env sh
 
-time$(date)
+time=$(date)
 
 echo "::debug ::Debug Message"
 echo "::warning ::Warning Message"
