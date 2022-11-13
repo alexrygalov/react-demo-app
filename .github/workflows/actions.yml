@@ -13,7 +13,7 @@ jobs:
           body: body
           assignees: |
             alexrygalov
-      - uses: ./.github/actions/hello-docker
+      - uses: ./.github/actions/docker
         id: hello
         with:
           who-to-greet: "Pew Pew"
